@@ -1,0 +1,36 @@
+body {
+  padding: 30px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+}
+
+.panel-body {
+  padding: 10px;
+  margin: 10px;
+}
+a {
+  color: #00B7FF;
+}
+.circle {
+  border-radius: 100%;
+  border: 0.25em solid black;
+  height: 50px;
+  width: 50px;
+}
+.glyphicon.glyphicon-edit {
+  font-size: 15px;
+  padding: 4px 0 0 1px;
+}
+.glyphicon.glyphicon-trash{
+  font-size: 15px;
+  padding: 4px 0 0 1px;
+}
+.circle button {
+  background: none;
+  border: none;
+  outline: none;
+}
+ul li{
+
+  text-align: center;
+}

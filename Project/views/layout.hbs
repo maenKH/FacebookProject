@@ -1,0 +1,48 @@
+<!DOCTYPE html >
+<html ng-app>
+
+  <head>
+    <title>{{title}}</title>
+
+      <script src="/javascripts/angular.min.js"></script>
+      <script src="/javascripts/angular-route.min.js"></script>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+      <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+      <script src="/javascripts/jquery.min.js"></script>
+      <script src="/javascripts/bootstrap.min.js"></script>
+
+  </head>
+  <body>
+      <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+              <div class="navbar-header">
+                  <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav1">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" >{{title}}</a>
+              </div>
+
+      <ul id="nav1" class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> List Users</a></li>
+      </ul>
+
+          </div>
+  </nav>
+<br><br><br>
+
+      {{{body}}}
+
+      <div class="container">
+  <footer>
+      <p>Developed by: Maen N Khabbas</p>
+      <p>Contact information: <a href="#">
+          maen.khabbas@gmail.com</a>.</p>
+  </footer>
+      </div>
+
+      <script src="/javascripts/controller.js"></script>
+  </body>
+
+</html>

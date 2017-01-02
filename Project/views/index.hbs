@@ -1,0 +1,141 @@
+
+
+
+<div class="container">
+    <button type="submit" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Add user</button>
+
+
+<br> <br>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+
+                <th>User name</th>
+                <th>Email</th>
+                <th>Mopile</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+                {{# each items }}
+                <tr id="item"  class="info"  >
+                    <td>{{ this.username }}</td>
+                    <td> {{ this.email }}</td>
+                    <td >{{ this.mobile }}</td>
+                <td></td>
+                    <td>
+                       <button type="submit"><span class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#Modal2"></span></button>
+                    </td>
+                    <td>
+                        <form action="/delete" method="post"><button type="submit"><span class="glyphicon glyphicon-trash"></span></button>
+                            <input type="text" id="id" name="id" hidden value="{{ this._id }}" >
+                        </form>
+                    </td>
+                {{/each}}
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <ul class="pagination">
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+    </ul>
+
+
+
+</div>
+
+</div>
+
+<div class="modal fade text-center" id="myModal" role="dialog">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="modalTitle">Add New User</h4>
+            </div>
+            <div class="modal-body">
+
+                <form action="/insert" method="post">
+
+                        <div class="input">
+                        <input type="text"  class="form-control" id="username" name="username" placeholder="Enter User Name" required><br><br>
+                        </div>
+
+                        <div class="input">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required><br><br>
+                        </div>
+
+                        <div class="input">
+                        <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter mobile" length="10"
+                               pattern="[0-9]{10}" title="please enter ten numbers " required><br><br>
+                        </div>
+
+                        <button type="submit" id="addUser" class="btn btn-primary btn-lg" >Add user</button>
+
+
+                </form>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade text-center" id="Modal2" role="dialog">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="modalTitle">Update User {{this.username}} </h4>
+            </div>
+            <div class="modal-body">
+
+                <form action="/update" method="post">
+
+                    <div class="input">
+                        <input type="text"  class="form-control" id="username" name="username2" placeholder="Enter User Name" required value="{{this.username}}" ><br><br>
+                    </div>
+
+                    <div class="input">
+                        <input type="email" class="form-control" id="email" name="email2" placeholder="Enter Email" required value="{{this.email}}"><br><br>
+                    </div>
+
+                    <div class="input">
+                        <input type="text" class="form-control" id="mobile" name="mobile2" placeholder="Enter mobile" length="10"
+                               pattern="[0-9]{10}" title="please enter ten numbers " required value="{{this.mobile}}"><br><br>
+                    </div>
+                    <div class="input">
+                    <input type="text" id="id" name="id2" hidden value="{{ this._id }}" >
+                    </div>
+                    <button type="submit" id="UpdateUser" class="btn btn-primary btn-lg" >Update</button>
+
+
+                </form>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

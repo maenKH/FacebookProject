@@ -1,0 +1,197 @@
+<!DOCTYPE html  >
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap-theme.css">
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>-->
+    <!--<script src="../ang.js"></script>-->
+    <div class="container">
+      <div class="jumbotron text-center">
+        <h1><span class="fa fa-lock"></span> Node Authentication</h1>
+        <p>Login or Register with:</p>
+
+        <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
+      </div>
+
+    </div>
+  </head>
+  <body >
+  <div class="container">
+    <div class=row"">
+      <button type="submit" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Add user</button>
+      <table id="example" class="table table-bordered table-responsive">
+        <thead>
+        <tr>
+          <td>
+            Fullname
+          </td>
+          <td>
+            Email
+          </td>
+          <td>
+            mobile
+          </td>
+          <td>
+            Edit
+          </td>
+          <td>
+            delete
+          </td>
+          <td><%=q%></td>
+        </tr>
+        </thead>
+        <tbody>
+        <%if(items.length>0) { { for(let i=(q-1)*5 ; i < items.length; i++) { %>
+        <tr>
+          <td class="col-lg-3" id="<%i%>"><a href="/profile">
+              <form method="post"><input  name="id2" value="<%=items[i]["_id"]%>"></form><%= items[i]["Fullname"]%></a></td>
+          <td class="col-lg-3"><%= items[i]["Email"]%></td>
+          <td class="col-lg-3"><%= items[i]["Phone#"]%></td>
+          <td>
+            <button type="submit"><span class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#Modal2">
+              </span>
+            </button>
+          </td>
+          <td><form action="/delete" method="post"><button type="submit">
+              <span class="glyphicon glyphicon-remove"></span>Delete</button>
+              <input type="text" id="15" name="id5" hidden value=" <%= items[i]["_id"].toString(16)%> " >
+            </form></td>
+        </tr>
+        <%} } }%>
+        </tbody>
+        <tfoot>
+        </tfoot>
+      </table>
+      <div class="container" >
+        <center>
+          <ul  class="pagination pagination-lg">
+            <%
+                pnumber=(items.length/5);
+				if(items.length%5 !=0)
+					pnumber++;
+            %>
+            <%for(var i =1 ; i<=pnumber;i++) {%>
+      <li><a href='?id=<%=i%>'><%=i%></a></li><%};%>
+          </ul>
+
+  <!--<script>-->
+      <!--var app = angular.module('myApp', []);-->
+      <!--app.controller('myCtrl', function($scope) {-->
+          <!--$scope.app = [{name:"John"},{name:"ahmad"}];-->
+
+      <!--});-->
+  <!--&lt;!&ndash;</script>&ndash;&gt;-->
+  <!--<script>-->
+      <!--var app = angular.module('myApp', []);-->
+      <!--app.controller('myCtrl', function($scope,$http) {-->
+          <!--$scope.app = [{name:"John"},{name:"ahmad"}];-->
+
+      <!--});-->
+  <!--</script>-->
+  <!-- Modal -->
+  <div class="modal fade text-center" id="myModal" role="dialog">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" id="modalTitle">Add New User</h4>
+        </div>
+        <div class="modal-body">
+
+          <form action="/insert" method="post">
+
+            <div class="input">
+              <input type="text"  class="form-control" id="username" name="username" placeholder="Enter User Name" required><br><br>
+            </div>
+
+            <div class="input">
+              <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required><br><br>
+            </div>
+
+            <div class="input">
+              <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter mobile" length="10" title="please enter ten numbers " required><br><br>
+            </div>
+            <div class="input">
+              <input type="text" class="form-control" id="location" name="location" placeholder="Enter location" ><br><br>
+            </div>
+            <div class="input">
+              <input type="text" class="form-control" id="Bdate" name="Bdate" placeholder="Enter Bdate"><br><br>
+            </div>
+            <div class="input">
+              <input type="text" class="form-control" id="Gender" name="Gender" placeholder="Enter Gender"><br><br>
+            </div>
+
+            <button type="submit" id="addUser" class="btn btn-primary btn-lg" >Add user</button>
+
+
+          </form>
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="modal fade text-center" id="Modal2" role="dialog">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" id="modalTitle">Update User {{this.username}} </h4>
+        </div>
+        <div class="modal-body">
+
+          <form action="/update" method="post">
+
+            <div class="input">
+              <input type="text"  class="form-control" id="username" name="username" placeholder="Enter User Name" required value="{{this.username}}" ><br><br>
+            </div>
+
+            <div class="input">
+              <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" value="{{this.id}}"><br><br>
+            </div>
+
+            <div class="input">
+              <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter mobile" length="10"
+                    title="please enter ten numbers " required value="{{this.mobile}}"><br><br>
+            </div>
+            <div class="input">
+              <input type="text" class="form-control" id="location" name="location" placeholder="Enter Email" value="{{this.id}}"><br><br>
+            </div>
+            <div class="input">
+              <input type="text" class="form-control" id="Bdate" name="Bdate" placeholder="Enter Email" value="{{this.id}}"><br><br>
+            </div>
+            <div class="input">
+              <input type="text" class="form-control" id="Gender" name="Gender" placeholder="Enter Email" value="{{this.id}}"><br><br>
+            </div>
+            <div class="input">
+              <input type="text" id="id" name="id2" hidden value="{{ this._id }}" >
+            </div>
+            <button type="submit" id="UpdateUser" class="btn btn-primary btn-lg" >Update</button>
+
+
+          </form>
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="../jquery-3.1.1.js"></script>
+  <script src="../bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+  <script src="../bootstrap-3.3.7-dist/js/npm.js"></script>
+  </body>
+</html>
